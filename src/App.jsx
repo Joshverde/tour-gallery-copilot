@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import TourCard from './components/TourCards'
+import Gallery from './components/Gallery'
 import './App.css'
 
 function App() {
@@ -36,33 +36,19 @@ function App() {
     setTours(updatedTours)
   }
 
-  if (loading) {
-    return <div>Loading...</div>
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>
-  }
-
   return (
     <main>
       <div className="title">
         <h2>Our Tours</h2>
         <div className="underline"></div>
       </div>
-      <div className="tours">
-        {tours.length === 0 ? (
-          <p>No tours available</p>
-        ) : (
-          tours.map((tour) => (
-            <TourCard 
-              key={tour.id} 
-              {...tour} 
-              removeTour={removeTour}
-            />
-          ))
-        )}
-      </div>
+      {loading ? (
+        <div>Loading...</div>
+      ) : error ? (
+        <div>Error: {error}</div>
+      ) : (
+        <Gallery tours={tours} removeTour={removeTour} />
+      )}
     </main>
   )
 }
