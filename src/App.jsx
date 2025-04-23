@@ -11,11 +11,16 @@ function App() {
       try {
         const response = await fetch('https://course-api.com/react-tours-project')
         if (!response.ok) {
-          throw new Error('Failed to fetch tours')
+          throw new Error(`Failed to fetch tours: ${response.status} ${response.statusText}`)
         }
-        const data = await response.json()
-        setTours(data)
-        setLoading(false)
+        try {
+          const data = await response.json()
+          setTours(data)
+        } catch (jsonError) {
+          throw new Error('Failed to parse JSON response')
+        } finally {
+          setLoading(false)
+        }
       } catch (error) {
         setError(error.message)
         setLoading(false)
