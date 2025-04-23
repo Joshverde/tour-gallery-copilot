@@ -43,9 +43,15 @@ function App() {
         <div className="underline"></div>
       </div>
       {loading ? (
-        <div>Loading...</div>
+        <div className="loading">
+          <h3>Loading...</h3>
+        </div>
       ) : error ? (
-        <div>Error: {error}</div>
+        <div className="error">
+          <h3>Error</h3>
+          <p>{error}</p>
+          <button onClick={() => window.location.reload()}>Try Again</button>
+        </div>
       ) : (
         <Gallery tours={tours} removeTour={removeTour} />
       )}
