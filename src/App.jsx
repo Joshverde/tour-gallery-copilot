@@ -7,27 +7,25 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  useEffect(() => {
-    const fetchTours = async () => {
-      try {
-        const response = await fetch('https://course-api.com/react-tours-project')
-        if (!response.ok) {
-          throw new Error(`Failed to fetch tours: ${response.status} ${response.statusText}`)
-        }
-        try {
-          const data = await response.json()
-          setTours(data)
-        } catch (jsonError) {
-          throw new Error('Failed to parse JSON response')
-        } finally {
-          setLoading(false)
-        }
-      } catch (error) {
-        setError(error.message)
-        setLoading(false)
+  const fetchTours = async () => {
+    try {
+      setLoading(true)
+      const response = await fetch('https://www.course-api.com/react-tours-project')
+      if (!response.ok) {
+        throw new Error(`Failed to fetch tours: ${response.status} ${response.statusText}`)
       }
+      const data = await response.json()
+      console.log('Fetched tours:', data) // Add this line to debug
+      setTours(data)
+    } catch (error) {
+      console.error('Fetch error:', error) // Add this line to debug
+      setError(error.message)
+    } finally {
+      setLoading(false)
     }
+  }
 
+  useEffect(() => {
     fetchTours()
   }, [])
 
@@ -50,10 +48,10 @@ function App() {
         <div className="error">
           <h3>Error</h3>
           <p>{error}</p>
-          <button onClick={() => window.location.reload()}>Try Again</button>
+          <button onClick={fetchTours}>Try Again</button>
         </div>
       ) : (
-        <Gallery tours={tours} removeTour={removeTour} />
+        <Gallery tours={tours} removeTour={removeTour} refetchTours={fetchTours} />
       )}
     </main>
   )
