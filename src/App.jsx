@@ -10,7 +10,7 @@ function App() {
   const fetchTours = async () => {
     try {
       setLoading(true)
-      const response = await fetch('https://www.course-api.com/react-tours-project')
+      const response = await fetch('https://course-api.com/react-tours-project')
       if (!response.ok) {
         throw new Error(`Failed to fetch tours: ${response.status} ${response.statusText}`)
       }
@@ -51,7 +51,7 @@ function App() {
           <button onClick={fetchTours}>Try Again</button>
         </div>
       ) : (
-        <Gallery tours={tours} removeTour={removeTour} refetchTours={fetchTours} />
+        <Gallery tours={tours} removeTour={removeTour} />
       )}
     </main>
   )

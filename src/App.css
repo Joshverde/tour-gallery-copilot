@@ -1,0 +1,207 @@
+/* Color Variables */
+:root {
+  --dark-charcoal: #32292f;
+  --mint-blue: #99e1d9;
+  --white-mint: #f0f7f4;
+  --warm-brown: #705d56;
+}
+
+/* Main container styles */
+main {
+  background-color: var(--white-mint);
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Title styles */
+.title {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.title h2 {
+  color: var(--dark-charcoal);
+}
+
+.underline {
+  height: 0.25rem;
+  width: 6rem;
+  background: var(--mint-blue);
+  margin: 0 auto;
+  margin-top: 1rem;
+}
+
+/* Gallery grid layout */
+.tours-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+/* Tour card styles */
+.single-tour {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 5px 15px rgba(50, 41, 47, 0.1);
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  animation: fadeIn 0.5s ease-in;
+}
+
+.single-tour:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Tour image styles */
+.img {
+  width: 100%;
+  height: 20rem;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.single-tour:hover .img {
+  transform: scale(1.05);
+}
+
+/* Tour info section */
+.tour-info {
+  padding: 1.5rem;
+}
+
+.tour-info h4 {
+  color: var(--dark-charcoal);
+}
+
+/* Tour info text styles */
+.tour-info p {
+  color: var(--dark-charcoal);
+  line-height: 1.6;
+  margin: 1rem 0;
+}
+
+/* Text formatting */
+.tour-info .tour-text {
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  margin-bottom: 1rem;
+}
+
+.tour-price {
+  color: var(--dark-charcoal);
+  background: var(--mint-blue);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  margin-top: 0.5rem;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+/* Button styles */
+.info-btn {
+  background: transparent;
+  border: none;
+  color: var(--dark-charcoal);
+  padding: 0.25rem 0.5rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.info-btn:hover {
+  background-color: var(--mint-blue);
+  border-radius: 0.25rem;
+  /* Removed the color change on hover */
+}
+
+.delete-btn {
+  background: var(--warm-brown);
+  color: var(--white-mint);
+  border: none;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  margin-top: 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+  background: var(--dark-charcoal);
+}
+
+/* Empty state styles */
+.empty-tours {
+  text-align: center;
+  padding: 2rem;
+}
+
+.refresh-btn {
+  background: var(--mint-blue);
+  color: var(--dark-charcoal);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.refresh-btn:hover {
+  background: var(--warm-brown);
+  color: var(--white-mint);
+  transform: scale(1.05);
+}
+
+/* Loading and error states */
+.loading, .error {
+  text-align: center;
+  padding: 2rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .tours-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .tours-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Dancing man animation */
+.dancing-man,
+.dancing-man::before,
+.dancing-man::after,
+.dancing-man .arms::before,
+.dancing-man .arms::after,
+.dancing-man .legs {
+  background: var(--mint-blue);
+  box-shadow: 0 2px 4px rgba(50, 41, 47, 0.2);
+}
+
+/* Empty state and loading styles */
+.empty-tours h3,
+.loading h3,
+.error h3 {
+  color: var(--dark-charcoal);
+}

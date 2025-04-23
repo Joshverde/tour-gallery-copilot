@@ -9,7 +9,7 @@ const TourCard = ({ id, image, info, name, price, removeTour }) => {
       <div className="tour-info">
         <h4>{name}</h4>
         <h4 className="tour-price">${price}</h4>
-        <p>
+        <p className="tour-text">
           {readMore ? info : `${info.substring(0, 200)}...`}
           <button 
             className="info-btn" 
