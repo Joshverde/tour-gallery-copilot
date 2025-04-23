@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import TourCard from './components/TourCards'
 import './App.css'
 
 function App() {
@@ -30,6 +31,11 @@ function App() {
     fetchTours()
   }, [])
 
+  const removeTour = (id) => {
+    const updatedTours = tours.filter((tour) => tour.id !== id)
+    setTours(updatedTours)
+  }
+
   if (loading) {
     return <div>Loading...</div>
   }
@@ -48,7 +54,13 @@ function App() {
         {tours.length === 0 ? (
           <p>No tours available</p>
         ) : (
-          <pre>{JSON.stringify(tours, null, 2)}</pre>
+          tours.map((tour) => (
+            <TourCard 
+              key={tour.id} 
+              {...tour} 
+              removeTour={removeTour}
+            />
+          ))
         )}
       </div>
     </main>
